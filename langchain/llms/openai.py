@@ -40,6 +40,8 @@ def update_token_usage(
     keys: Set[str], response: Dict[str, Any], token_usage: Dict[str, Any]
 ) -> None:
     """Update token usage."""
+    if response.get("usage", None) is None:
+        return
     _keys_to_use = keys.intersection(response["usage"])
     for _key in _keys_to_use:
         if _key not in token_usage:
